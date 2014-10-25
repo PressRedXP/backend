@@ -4,6 +4,7 @@ import static spark.Spark.setPort;
 
 import contacts.ContactsService;
 import meetings.Meeting;
+import meetings.MeetingsService;
 
 public class Controller {
 
@@ -11,7 +12,10 @@ public class Controller {
         setPort(Integer.parseInt(System.getenv("PORT")));
         ContactsService contactsService = new ContactsService();
 
-        get("/hello", (request, response) -> "hello");
+        get("/status", (request, response) -> {
+            MeetingsService meetingsService = MeetingsService.getInstance();
+            return meetingsService.numberOfMeetings;
+        });
 
         // https://justmeet-backend.herokuapp.com/people/mrbuttons/contacts
         get("/people/:id/contacts", "application/json", (request, response) -> {
@@ -34,6 +38,8 @@ public class Controller {
     }
 
     static public Meeting makeMeeting() {
+        MeetingsService meetingsService = MeetingsService.getInstance();
+        meetingsService.registerMeeting();
         return new Meeting();
     }
 }
