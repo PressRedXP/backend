@@ -35,9 +35,10 @@ public class Meeting {
     public String status;       // TODO: enum
     public Position position;
 
+    public Attendee host;
     public List<Attendee> people = new ArrayList<Attendee>();
-    public Contacts contacts;
 
+    public Contacts contacts;
 
 
     public Meeting(int index) {
@@ -50,14 +51,15 @@ public class Meeting {
         people.add(alex);
     }
 
-    public Meeting(int index, List<String> ids) {
+    public Meeting(int index, List<String> ids, Attendee host) {
         this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
         this.status = "pending";
+        this.host = host;
 
         for (String s : ids) {
-                Attendee attendee = new Attendee(s, "pending");
-                people.add(attendee);
-            }
+            Attendee attendee = new Attendee(s, "pending");
+            people.add(attendee);
+        }
     }
 
     public void pretendItIsComplete() {
