@@ -43,7 +43,7 @@ public class Meeting {
 
 
         for (String s : ids) {
-            Attendee attendee = new Attendee(s, "pending");
+            Attendee attendee = new Attendee(s, MeetingStatus.pending);
             people.add(attendee);
         }
         people.add(organiser);
