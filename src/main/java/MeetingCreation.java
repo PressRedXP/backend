@@ -1,20 +1,23 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import meetings.Attendee;
+import meetings.Position;
 
 public class MeetingCreation {
-    public Organiser organiser;
+    public MeetingOrganiser organiser;
     public List<People> people;
 
     public List<String> getPeopleIds() {
-        List<String> ids = new ArrayList<String>();
-        for (People p: people) {
-            ids.add(p.id);
-        }
-
-        return ids;
+        return people.stream().map(p -> p.id).collect(Collectors.toList());
     }
 
-    private class Organiser {
+    public Attendee getOrganiser() {
+        return new Attendee(organiser.id, new Position(1, 1), "awol");
+    }
+
+    private class MeetingOrganiser {
+        public String id;
     }
 
     private class People {

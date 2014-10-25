@@ -29,6 +29,12 @@ public class MeetingsService {
         return meeting;
     }
 
+    public Meeting makeMeeting(Attendee organiser, List<String> ids) {
+        Meeting meeting = new Meeting(meetings.size() + 1, ids, organiser);
+        meetings.add(meeting);
+        return meeting;
+    }
+
     public Meeting getMeeting(String meetingId) {
         int index = Integer.parseInt(meetingId);
         if (index <= meetings.size()) {

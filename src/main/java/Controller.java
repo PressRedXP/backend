@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import contacts.ContactsService;
+import meetings.Attendee;
 import meetings.MeetingsService;
 
 public class Controller {
@@ -29,7 +30,8 @@ public class Controller {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(201);
             List<String> idsOfPeople = getIdsOfPeopleFrom(request.body());
-            return MeetingsService.getInstance().makeMeeting(idsOfPeople);
+            Attendee organiser = getOrganiserFrom(request.body());
+            return MeetingsService.getInstance().makeMeeting(organiser, idsOfPeople);
         }, new JsonTransformer());
 
         // GET meeting information
@@ -47,5 +49,16 @@ public class Controller {
 //        System.out.println(meetingCreation.people.size());
         List<String> ids = meetingCreation.getPeopleIds();
         return ids;
+    }
+
+    public static Attendee getOrganiserFrom(String body) {
+        System.out.println("!!!!!! hello !!!!!!");
+        Gson gson = new Gson();
+        MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
+
+        Attendee organiser = meetingCreation.getOrganiser();
+
+        System.out.println(organiser.id);
+        return organiser;
     }
 }
