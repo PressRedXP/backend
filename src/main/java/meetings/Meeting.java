@@ -24,6 +24,9 @@ package meetings;
 }
  */
 
+import contacts.Contacts;
+import contacts.ContactsService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +36,7 @@ public class Meeting {
     public Position position;
 
     public List<Attendee> people = new ArrayList<Attendee>();
+    public Contacts contacts;
 
 
 
@@ -50,10 +54,10 @@ public class Meeting {
         this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
         this.status = "pending";
 
-        Attendee roberto = new Attendee("roberto", new Position(), "confirmed");
-        Attendee alex = new Attendee("alex", "pending");
-        people.add(roberto);
-        people.add(alex);
+        for (String s : ids) {
+                Attendee attendee = new Attendee(s, "pending");
+                people.add(attendee);
+            }
     }
 
     public void pretendItIsComplete() {
