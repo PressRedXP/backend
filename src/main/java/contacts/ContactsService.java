@@ -17,9 +17,11 @@ public class ContactsService {
     }
 
     public Contacts getContactsFor(String id) {
+        List<Person> filteredPeople = new ArrayList<Person>();
 
-        List<Person> filteredPeople = people;
-        filteredPeople.removeIf(p-> p.id.equals(id));
+        people.stream()
+                .filter(p -> !p.id.equals(id))
+                .forEach(p -> filteredPeople.add(p));
 
         return new Contacts(filteredPeople);
     }

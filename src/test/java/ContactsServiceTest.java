@@ -1,10 +1,11 @@
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
 import contacts.Contacts;
 import contacts.ContactsService;
 import contacts.Person;
-import org.junit.Test;
 
 public class ContactsServiceTest {
 
