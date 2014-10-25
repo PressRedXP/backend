@@ -37,37 +37,10 @@ public class Meeting {
 
 //    public Contacts contacts;
 
-<<<<<<< HEAD
-    public Meeting(int index, List<String> ids, Attendee organiser) {
-        this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
-        this.status = "pending";
-
-=======
-
-    public Meeting(int index) {
-        this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
-        this.status = MeetingStatus.pending;
-
-        Attendee roberto = new Attendee("roberto", new Position(), "confirmed");
-        Attendee alex = new Attendee("alex", "pending");
-        people.add(roberto);
-        people.add(alex);
-    }
-
-    public Meeting(int index, List<String> ids) {
-        this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
-        this.status = MeetingStatus.pending;
-
-        for (String s : ids) {
-            Attendee attendee = new Attendee(s, "pending");
-            people.add(attendee);
-        }
-    }
-
     public Meeting(int index, List<String> ids, Attendee organiser) {
         this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
         this.status = MeetingStatus.pending;
->>>>>>> d16fc555e1f72b3b72597573ddee14cffc070b73
+
 
         for (String s : ids) {
             Attendee attendee = new Attendee(s, "pending");
