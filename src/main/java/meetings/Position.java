@@ -1,5 +1,7 @@
 package meetings;
 
+import java.util.Random;
+
 public class Position {
     final public double latitude;
     final public double longitude;
@@ -12,7 +14,9 @@ public class Position {
 
     public Position ()
     {
-        this.latitude = 51.5072;
-        this.longitude = 0.1275;
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(1);
+        this.latitude = 51.5072 + randomInt;
+        this.longitude = 0.1275  + randomInt;
     }
 }
