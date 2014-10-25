@@ -1,3 +1,5 @@
+package contacts;
+
 public class Person {
     public final String name;
     public final String id;

@@ -1,3 +1,5 @@
+package contacts;
+
 import java.util.List;
 
 public class Contacts {

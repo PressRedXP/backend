@@ -1,1 +1,1 @@
-web:    java -cp target/dependency/*:target/classes People
+web:    java -cp target/dependency/*:target/classes Controller

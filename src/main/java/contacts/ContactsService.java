@@ -1,3 +1,5 @@
+package contacts;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +17,10 @@ public class ContactsService {
     }
 
     public Contacts getContactsFor(String id) {
-        List<Person> contacts = new ArrayList<Person>();
 
-        for (Person person: people) {
-            if (!person.id.equals(id)) {
-                contacts.add(person);
-            }
-        }
+        List<Person> filteredPeople = people;
+        filteredPeople.removeIf(p-> p.id.equals(id));
 
-        return new Contacts(contacts);
+        return new Contacts(filteredPeople);
     }
 }

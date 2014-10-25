@@ -1,7 +1,9 @@
+import contacts.ContactsService;
+
 import static spark.Spark.get;
 import static spark.Spark.setPort;
 
-public class People {
+public class Controller {
 
     public static void main(String[] args) {
         setPort(Integer.parseInt(System.getenv("PORT")));
