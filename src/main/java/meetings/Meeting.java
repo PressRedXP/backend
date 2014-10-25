@@ -24,11 +24,10 @@ package meetings;
 }
  */
 
-import contacts.Contacts;
-import contacts.ContactsService;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import contacts.Contacts;
 
 public class Meeting {
     public String href;

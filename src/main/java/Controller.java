@@ -1,5 +1,9 @@
 import static spark.Spark.*;
 
+import java.util.List;
+
+import com.google.gson.Gson;
+
 import contacts.ContactsService;
 import meetings.MeetingsService;
 
@@ -24,7 +28,8 @@ public class Controller {
         post("/meetings", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(201);
-            return MeetingsService.getInstance().makeMeeting();
+            List<String> idsOfPeople = getIdsOfPeopleFrom(request.body());
+            return MeetingsService.getInstance().makeMeeting(idsOfPeople);
         }, new JsonTransformer());
 
         // GET meeting information
@@ -32,5 +37,15 @@ public class Controller {
             response.header("Access-Control-Allow-Origin", "*");
             return MeetingsService.getInstance().getMeeting(request.params(":meetingId"));
         }, new JsonTransformer());
+    }
+
+    public static List<String> getIdsOfPeopleFrom(String body) {
+//        System.out.println(body);
+        Gson gson = new Gson();
+        MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
+
+//        System.out.println(meetingCreation.people.size());
+        List<String> ids = meetingCreation.getPeopleIds();
+        return ids;
     }
 }
