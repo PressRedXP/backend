@@ -28,9 +28,9 @@ public class Controller {
         }, new JsonTransformer());
 
         // GET meeting information
-        get("/meetings/1", (request, response) -> {
+        get("/meetings/:meetingId", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
-            return MeetingsService.getInstance().getMeeting(1);
+            return MeetingsService.getInstance().getMeeting(request.params(":meetingId"));
         }, new JsonTransformer());
     }
 }

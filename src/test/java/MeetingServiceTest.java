@@ -21,7 +21,7 @@ public class MeetingServiceTest {
         MeetingsService service = MeetingsService.getInstance();
 
         service.makeMeeting();
-        Meeting meeting = service.getMeeting(1);
+        Meeting meeting = service.getMeeting("1");
 
         assertNotNull(meeting);
     }

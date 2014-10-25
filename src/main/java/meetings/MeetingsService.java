@@ -7,7 +7,7 @@ import java.util.List;
 public class MeetingsService {
     private static MeetingsService instance;
 
-    private List<Meeting> meetings = new ArrayList<Meeting>();
+    private List<Meeting> meetings = new ArrayList<>();
 
     public static MeetingsService getInstance() {
         if (instance == null) {
@@ -17,16 +17,14 @@ public class MeetingsService {
         return instance;
     }
 
-    private MeetingsService() {
-    }
-
     public Meeting makeMeeting() {
         Meeting meeting = new Meeting(meetings.size() + 1);
         meetings.add(meeting);
         return meeting;
     }
 
-    public Meeting getMeeting(int index) {
+    public Meeting getMeeting(String meetingId) {
+        int index = Integer.parseInt(meetingId);
         if (index <= meetings.size()) {
             Meeting meeting = meetings.get(index - 1);
             meeting.pretendItIsComplete();
