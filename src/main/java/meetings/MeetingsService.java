@@ -17,6 +17,15 @@ public class MeetingsService {
         return instance;
     }
 
+<<<<<<< HEAD
+=======
+    public Meeting makeMeeting() {
+        Meeting meeting = new Meeting(meetings.size() + 1);
+        meetings.add(meeting);
+        return meeting;
+    }
+
+>>>>>>> d16fc555e1f72b3b72597573ddee14cffc070b73
     public Meeting makeMeeting(Attendee organiser, List<String> ids) {
         Meeting meeting = new Meeting(meetings.size() + 1, ids, organiser);
         meetings.add(meeting);
