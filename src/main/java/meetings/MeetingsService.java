@@ -23,8 +23,8 @@ public class MeetingsService {
         return meeting;
     }
 
-    public Meeting makeMeeting(List<String> ids, Attendee organiser) {
-        Meeting meeting = new Meeting(meetings.size() + 1, ids, organiser);
+    public Meeting makeMeeting(List<String> ids) {
+        Meeting meeting = new Meeting(meetings.size() + 1, ids);
         meetings.add(meeting);
         return meeting;
     }

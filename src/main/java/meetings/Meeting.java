@@ -50,6 +50,16 @@ public class Meeting {
         people.add(alex);
     }
 
+    public Meeting(int index, List<String> ids) {
+        this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
+        this.status = "pending";
+
+        for (String s : ids) {
+            Attendee attendee = new Attendee(s, "pending");
+            people.add(attendee);
+        }
+    }
+
     public Meeting(int index, List<String> ids, Attendee organiser) {
         this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
         this.status = "pending";
