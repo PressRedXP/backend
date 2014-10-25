@@ -19,8 +19,15 @@ public class Controller {
             return contactsService.getContactsFor(request.params(":id"));
         }, new JsonTransformer());
 
-        // 201 response?
+        // POST to create new meeting. Returns with 201 response
         post("/meetings", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.status(201);
+            return makeMeeting();
+        }, new JsonTransformer());
+
+        // GET meeting information
+        get("/meetings/1", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             return makeMeeting();
         }, new JsonTransformer());
