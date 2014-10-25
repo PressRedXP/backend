@@ -42,6 +42,8 @@ public class RequestMeetingExtractorTest {
         Attendee organiser = Controller.getOrganiserFrom(testBodyWith3Invitees);
 
         assertTrue(organiser.id.equals("roberto"));
+        assertTrue(organiser.status.equals("confirmed"));
+
         assertTrue(organiser.position.isPresent());
         assertTrue(organiser.position.get().latitude == 1.0);
         assertTrue(organiser.position.get().longitude == 1.0);

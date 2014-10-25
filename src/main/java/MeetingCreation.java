@@ -13,7 +13,7 @@ public class MeetingCreation {
     }
 
     public Attendee getOrganiser() {
-        return new Attendee(organiser.id, new Position(1, 1), "awol");
+        return new Attendee(organiser.id, new Position(1, 1), "confirmed");
     }
 
     private class MeetingOrganiser {

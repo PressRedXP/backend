@@ -52,13 +52,8 @@ public class Controller {
     }
 
     public static Attendee getOrganiserFrom(String body) {
-        System.out.println("!!!!!! hello !!!!!!");
         Gson gson = new Gson();
         MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
-
-        Attendee organiser = meetingCreation.getOrganiser();
-
-        System.out.println(organiser.id);
-        return organiser;
+        return meetingCreation.getOrganiser();
     }
 }
