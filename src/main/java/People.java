@@ -13,6 +13,7 @@ public class People {
 
         // https://justmeet-backend.herokuapp.com/people/mrbuttons/contacts
         get("/people/*/contacts", "application/json", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
             return getContacts();
         }, new JsonTransformer());
     }
