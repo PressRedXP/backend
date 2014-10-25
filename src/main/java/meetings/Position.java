@@ -15,7 +15,7 @@ public class Position {
     public Position ()
     {
         Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(1);
+        int randomInt = randomGenerator.nextInt(3);
         this.latitude = 51.5072 + randomInt;
         this.longitude = 0.1275  + randomInt;
     }
