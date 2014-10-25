@@ -27,7 +27,6 @@ public class MeetingsService {
         int index = Integer.parseInt(meetingId);
         if (index <= meetings.size()) {
             Meeting meeting = meetings.get(index - 1);
-            meeting.pretendItIsComplete();
             return meeting;
         }
 
