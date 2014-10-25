@@ -14,11 +14,15 @@ public class MeetingsService {
         return instance;
     }
 
-    public MeetingsService() {
+    private MeetingsService() {
         numberOfMeetings = 0;
     }
 
-    public void registerMeeting() {
-        numberOfMeetings++;
+    public Meeting makeMeeting() {
+        return new Meeting();
+    }
+
+    public Meeting getMeeting(int i) {
+        return new Meeting();
     }
 }

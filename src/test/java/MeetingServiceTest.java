@@ -3,14 +3,15 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import meetings.Meeting;
+import meetings.MeetingsService;
 
 public class MeetingServiceTest {
 
     @Test
     public void testCreateMeeting() {
-        Controller controller = new Controller();
+        MeetingsService service = MeetingsService.getInstance();
 
-        Meeting meeting = controller.makeMeeting();
+        Meeting meeting = service.makeMeeting();
 
         assertNotNull(meeting);
     }

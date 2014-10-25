@@ -27,19 +27,13 @@ public class Controller {
         post("/meetings", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(201);
-            return makeMeeting();
+            return MeetingsService.getInstance().makeMeeting();
         }, new JsonTransformer());
 
         // GET meeting information
         get("/meetings/1", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
-            return makeMeeting();
+            return MeetingsService.getInstance().getMeeting(1);
         }, new JsonTransformer());
-    }
-
-    static public Meeting makeMeeting() {
-        MeetingsService meetingsService = MeetingsService.getInstance();
-        meetingsService.registerMeeting();
-        return new Meeting();
     }
 }
