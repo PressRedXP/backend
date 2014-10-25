@@ -17,18 +17,6 @@ public class MeetingsService {
         return instance;
     }
 
-    public Meeting makeMeeting() {
-        Meeting meeting = new Meeting(meetings.size() + 1);
-        meetings.add(meeting);
-        return meeting;
-    }
-
-    public Meeting makeMeeting(List<String> ids) {
-        Meeting meeting = new Meeting(meetings.size() + 1, ids);
-        meetings.add(meeting);
-        return meeting;
-    }
-
     public Meeting makeMeeting(Attendee organiser, List<String> ids) {
         Meeting meeting = new Meeting(meetings.size() + 1, ids, organiser);
         meetings.add(meeting);
