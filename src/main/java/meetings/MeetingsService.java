@@ -33,4 +33,8 @@ public class MeetingsService {
 
         throw new IndexOutOfBoundsException();
     }
+
+    public MeetingList getMeetingsForAttendee(String attendeeId) {
+        return new MeetingList(meetings);
+    }
 }

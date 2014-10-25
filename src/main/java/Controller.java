@@ -44,20 +44,14 @@ public class Controller {
          // GET meetings you are in
          get("/people/:id/meetings", (request, response) -> {
              response.header("Access-Control-Allow-Origin", "*");
-             //return MeetingsService.getInstance().getMeeting(request.params(":id"));
-             return null;
+             return MeetingsService.getInstance().getMeetingsForAttendee(request.params(":id"));
         }, new JsonTransformer());
-}
-
-
+    }
 
 
     public static List<String> getIdsOfPeopleFrom(String body) {
-//        System.out.println(body);
         Gson gson = new Gson();
         MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
-
-//        System.out.println(meetingCreation.people.size());
         List<String> ids = meetingCreation.getPeopleIds();
         return ids;
     }
