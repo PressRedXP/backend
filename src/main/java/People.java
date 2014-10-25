@@ -17,12 +17,13 @@ public class People {
         }, new JsonTransformer());
     }
 
-    private static List<Person> getContacts() {
+    private static Contacts getContacts() {
         List<Person> people = new ArrayList<Person>();
         people.add(new Person("Alex Sneddon", "alex"));
         people.add(new Person("Will Crossland", "will"));
         people.add(new Person("Krishnan Sambasivan", "krishnan"));
         people.add(new Person("Roberto Nerici", "roberto"));
-        return people;
+
+        return new Contacts(people);
     }
 }
