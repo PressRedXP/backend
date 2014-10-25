@@ -39,7 +39,18 @@ public class Controller {
             response.header("Access-Control-Allow-Origin", "*");
             return MeetingsService.getInstance().getMeeting(request.params(":meetingId"));
         }, new JsonTransformer());
-    }
+
+
+         // GET meetings you are in
+         get("/people/:id/meetings", (request, response) -> {
+             response.header("Access-Control-Allow-Origin", "*");
+             //return MeetingsService.getInstance().getMeeting(request.params(":id"));
+             return null;
+        }, new JsonTransformer());
+}
+
+
+
 
     public static List<String> getIdsOfPeopleFrom(String body) {
 //        System.out.println(body);
