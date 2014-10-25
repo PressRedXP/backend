@@ -1,10 +1,13 @@
 package meetings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // TODO omigod!
 public class MeetingsService {
     private static MeetingsService instance;
 
-    public int numberOfMeetings; // TODO: should be private
+    private List<Meeting> meetings = new ArrayList<Meeting>();
 
     public static MeetingsService getInstance() {
         if (instance == null) {
@@ -15,14 +18,21 @@ public class MeetingsService {
     }
 
     private MeetingsService() {
-        numberOfMeetings = 0;
     }
 
     public Meeting makeMeeting() {
-        return new Meeting();
+        Meeting meeting = new Meeting(meetings.size() + 1);
+        meetings.add(meeting);
+        return meeting;
     }
 
-    public Meeting getMeeting(int i) {
-        return new Meeting();
+    public Meeting getMeeting(int index) {
+        if (index <= meetings.size()) {
+            Meeting meeting = meetings.get(index - 1);
+            meeting.pretendItIsComplete();
+            return meeting;
+        }
+
+        throw new IndexOutOfBoundsException();
     }
 }

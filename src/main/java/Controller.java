@@ -1,9 +1,6 @@
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.setPort;
+import static spark.Spark.*;
 
 import contacts.ContactsService;
-import meetings.Meeting;
 import meetings.MeetingsService;
 
 public class Controller {
@@ -14,7 +11,7 @@ public class Controller {
 
         get("/status", (request, response) -> {
             MeetingsService meetingsService = MeetingsService.getInstance();
-            return meetingsService.numberOfMeetings;
+            return 0;
         });
 
         // https://justmeet-backend.herokuapp.com/people/mrbuttons/contacts
