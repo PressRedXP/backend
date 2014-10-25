@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import meetings.Attendee;
+import meetings.MeetingStatus;
 
 public class RequestMeetingExtractorTest {
 
@@ -42,7 +43,7 @@ public class RequestMeetingExtractorTest {
         Attendee organiser = Controller.getOrganiserFrom(testBodyWith3Invitees);
 
         assertTrue(organiser.id.equals("roberto"));
-        assertTrue(organiser.status.equals("confirmed"));
+        assertTrue(organiser.status.equals(MeetingStatus.confirmed));
 
         assertTrue(organiser.position.isPresent());
         assertTrue(organiser.position.get().latitude == 1.0);

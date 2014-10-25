@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import meetings.Attendee;
+import meetings.MeetingStatus;
 import meetings.Position;
 
 public class MeetingCreation {
@@ -13,7 +14,7 @@ public class MeetingCreation {
     }
 
     public Attendee getOrganiser() {
-        return new Attendee(organiser.id, new Position(1, 1), "confirmed");
+        return new Attendee(organiser.id, new Position(1, 1), MeetingStatus.confirmed);
     }
 
     private class MeetingOrganiser {
