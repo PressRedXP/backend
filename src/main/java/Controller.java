@@ -1,7 +1,9 @@
 import static spark.Spark.get;
+import static spark.Spark.post;
 import static spark.Spark.setPort;
 
 import contacts.ContactsService;
+import meetings.Meeting;
 
 public class Controller {
 
@@ -16,5 +18,15 @@ public class Controller {
             response.header("Access-Control-Allow-Origin", "*");
             return contactsService.getContactsFor(request.params(":id"));
         }, new JsonTransformer());
+
+        // 201 response?
+        post("/meetings", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            return makeMeeting();
+        }, new JsonTransformer());
+    }
+
+    static public Meeting makeMeeting() {
+        return new Meeting();
     }
 }
