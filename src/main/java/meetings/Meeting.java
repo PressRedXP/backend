@@ -50,11 +50,6 @@ public class Meeting {
         people.add(organiser);
     }
 
-    public void pretendItIsComplete() {
-        status = MeetingStatus.confirmed;
-        position = new Position();
-    }
-
     public void updateAttendence(String attendeeId, MeetingStatus newStatus) {
         for (Attendee attendee : people) {
             if (attendee.id.equals(attendeeId)) {
@@ -66,6 +61,10 @@ public class Meeting {
         people.stream()
               .filter(attendee -> attendee.status.equals(MeetingStatus.pending))
               .forEach(attendee -> status = MeetingStatus.pending);
+
+        if (status.equals(MeetingStatus.confirmed)) {
+            position = new Position();
+        }
     }
 
     public void updateAttendence(String attendeeId, MeetingStatus newStatus, Position position) {
