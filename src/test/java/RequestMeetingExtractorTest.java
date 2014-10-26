@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -52,8 +53,8 @@ public class RequestMeetingExtractorTest {
         assertTrue(organiser.id.equals("roberto"));
         assertTrue(organiser.status.equals(MeetingStatus.confirmed));
 
-        assertTrue(organiser.position.isPresent());
-        assertTrue(organiser.position.get().latitude == 1.23);
-        assertTrue(organiser.position.get().longitude == 2.34);
+        assertNotNull(organiser.position);
+        assertTrue(organiser.position.latitude == 1.23);
+        assertTrue(organiser.position.longitude == 2.34);
     }
 }

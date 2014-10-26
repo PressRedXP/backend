@@ -26,7 +26,6 @@ package meetings;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Meeting {
     public String href;
@@ -51,7 +50,7 @@ public class Meeting {
         for (Attendee attendee : people) {
             if (attendee.id.equals(attendeeId)) {
                 attendee.status = newStatus;
-                attendee.position = Optional.of(attendeePosition);
+                attendee.position = attendeePosition;
             }
         }
 
@@ -70,9 +69,9 @@ public class Meeting {
         double sumLong = 0;
         for (Attendee attendee: people) {
             // TODO
-            if (attendee.position.isPresent()) {
-                sumLat += attendee.position.get().latitude;
-                sumLong += attendee.position.get().longitude;
+            if (attendee.position != null) {
+                sumLat += attendee.position.latitude;
+                sumLong += attendee.position.longitude;
             }
         }
 
