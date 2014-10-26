@@ -69,8 +69,11 @@ public class Meeting {
         double sumLat = 0;
         double sumLong = 0;
         for (Attendee attendee: people) {
-            sumLat += attendee.position.get().latitude;
-            sumLong += attendee.position.get().longitude;
+            // TODO
+            if (attendee.position.isPresent()) {
+                sumLat += attendee.position.get().latitude;
+                sumLong += attendee.position.get().longitude;
+            }
         }
 
         this.position = new Position(sumLat / people.size(), sumLong / people.size());

@@ -11,6 +11,7 @@ import meetings.Position;
 import meetings.AttendanceData;
 
 public class Controller {
+    private static RequestExtractor requestExtractor = new RequestExtractor();
 
     public static void main(String[] args) {
         setPort(Integer.parseInt(System.getenv("PORT")));
@@ -31,7 +32,7 @@ public class Controller {
         post("/meetings", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(201);
-            List<String> idsOfPeople = getIdsOfPeopleFrom(request.body());
+            List<String> idsOfPeople = requestExtractor.getIdsOfPeopleFrom(request.body());
             Attendee organiser = getOrganiserFrom(request.body());
             return MeetingsService.getInstance().makeMeeting(organiser, idsOfPeople);
         }, new JsonTransformer());
@@ -48,15 +49,15 @@ public class Controller {
              return MeetingsService.getInstance().getMeetingsForAttendee(request.params(":id"));
         }, new JsonTransformer());
 
-        // PUT
-        //options("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
-        //    response.header("Access-Control-Allow-Origin", "*");
-        //    response.status(200);
-        //    response.header("Allow", "PUT");
-        //    return "";
-        //});
+        // OPTIONS
+        options("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Methods", "POST, OPTIONS");
+            response.status(200);
+            return "";
+        });
 
-        // PUT
+        // POST
         post("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
