@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import contacts.ContactsService;
 import meetings.Attendee;
 import meetings.MeetingsService;
+import meetings.Position;
 
 public class Controller {
 
@@ -50,7 +51,8 @@ public class Controller {
         put("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
-            MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"));
+            Position position = getPositionFrom(request.body());
+            MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"), position);
             return "";
         });
     }
@@ -67,5 +69,11 @@ public class Controller {
         Gson gson = new Gson();
         MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
         return meetingCreation.getOrganiser();
+    }
+
+    public static Position getPositionFrom(String body) {
+        Gson gson = new Gson();
+        Position position = gson.fromJson(body, Position.class);
+        return position;
     }
 }

@@ -54,6 +54,12 @@ public class MeetingsService {
         meeting.updateAttendence(attendeeId, MeetingStatus.confirmed);
     }
 
+    public void setAttendence(String meetingId, String attendeeId, Position position) {
+
+        Meeting meeting = findMeeting(meetingId);
+        meeting.updateAttendence(attendeeId, MeetingStatus.confirmed, position);
+    }
+
 
     private Meeting findMeeting(String meetingIdAsString) {
         Integer index = Integer.parseInt(meetingIdAsString) - 1;

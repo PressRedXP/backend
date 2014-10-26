@@ -26,6 +26,7 @@ package meetings;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Meeting {
     public String href;
@@ -65,5 +66,19 @@ public class Meeting {
         people.stream()
               .filter(attendee -> attendee.status.equals(MeetingStatus.pending))
               .forEach(attendee -> status = MeetingStatus.pending);
+    }
+
+    public void updateAttendence(String attendeeId, MeetingStatus newStatus, Position position) {
+        for (Attendee attendee : people) {
+            if (attendee.id.equals(attendeeId)) {
+                attendee.status = newStatus;
+                attendee.position = Optional.of(position);
+            }
+        }
+
+        status = MeetingStatus.confirmed;
+        people.stream()
+                .filter(attendee -> attendee.status.equals(MeetingStatus.pending))
+                .forEach(attendee -> status = MeetingStatus.pending);
     }
 }
