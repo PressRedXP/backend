@@ -2,6 +2,7 @@ package contacts;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ContactsService {
     private List<Person> people = new ArrayList<Person>();
@@ -24,5 +25,15 @@ public class ContactsService {
                 .forEach(p -> filteredPeople.add(p));
 
         return new Contacts(filteredPeople);
+    }
+
+    public Optional<Person> getContactById(String id) {
+        for (Person person: people) {
+            if (person.id.equals(id)) {
+                return Optional.of(person);
+            }
+        }
+
+        return Optional.empty();
     }
 }
