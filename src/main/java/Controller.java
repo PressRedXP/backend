@@ -35,6 +35,14 @@ public class Controller {
             return MeetingsService.getInstance().makeMeeting(organiser, idsOfPeople);
         }, new JsonTransformer());
 
+        // POST to clear meetings
+        post("/clearmeetings", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.status(200);
+            MeetingsService.getInstance().clearMeetings();
+            return "";
+        });
+
         // GET meeting information
         get("/meetings/:meetingId", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");

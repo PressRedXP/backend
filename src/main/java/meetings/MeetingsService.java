@@ -63,4 +63,11 @@ public class MeetingsService {
 
         throw new IndexOutOfBoundsException();
     }
+
+    public void clearMeetings() {
+        for (Meeting meeting: meetings) {
+            meetings.remove(meeting);
+        }
+
+    }
 }
