@@ -8,13 +8,13 @@ import contacts.Person;
 
 public class Attendee {
     final public String id;
-    public Optional<Position> position;
+    public Position position;
     public MeetingStatus status;
     public String name;
 
     public Attendee(String id, Position position, MeetingStatus status) {
         this.id = id;
-        this.position = Optional.of(position);
+        this.position = position;
         this.status = status;
         getNameOfAttendee(id);
     }
@@ -22,7 +22,7 @@ public class Attendee {
     public Attendee(String id, MeetingStatus status) {
         this.id = id;
         this.status = status;
-        this.position = Optional.empty();
+        this.position = null;
         getNameOfAttendee(id);
     }
 

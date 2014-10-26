@@ -24,12 +24,11 @@ package meetings;
 }
  */
 
-import Dao.Place;
-import Dao.PubFinderDao;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import Dao.Place;
+import Dao.PubFinderDao;
 
 public class Meeting {
     public String href;
@@ -56,7 +55,7 @@ public class Meeting {
         for (Attendee attendee : people) {
             if (attendee.id.equals(attendeeId)) {
                 attendee.status = newStatus;
-                attendee.position = Optional.of(attendeePosition);
+                attendee.position = attendeePosition;
             }
         }
 
@@ -76,9 +75,9 @@ public class Meeting {
         double sumLong = 0;
         for (Attendee attendee: people) {
             // TODO
-            if (attendee.position.isPresent()) {
-                sumLat += attendee.position.get().latitude;
-                sumLong += attendee.position.get().longitude;
+            if (attendee.position != null) {
+                sumLat += attendee.position.latitude;
+                sumLong += attendee.position.longitude;
             }
         }
 
@@ -87,6 +86,8 @@ public class Meeting {
 
     private void setMeetingPositionToBestPub() {
         PubFinderDao pubFinderDao = new PubFinderDao();
+        System.out.println("Calling pubfinder with " + position.latitude + ", " + position.longitude);
+
         Place place = pubFinderDao.getPlace(this.position.latitude,this.position.longitude);
         if (place != null) {
             this.position = new Position(place.latitude, place.longitude);
