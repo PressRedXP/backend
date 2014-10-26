@@ -47,9 +47,11 @@ public class Controller {
         }, new JsonTransformer());
 
         // PUT
-        put("/meetings/:meetingId/people/:id/attendence", (request, response) -> {
+        put("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.status(200);
             MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"));
-            return null;
+            return "";
         });
     }
 
