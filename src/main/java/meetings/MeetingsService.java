@@ -48,12 +48,6 @@ public class MeetingsService {
         return false;
     }
 
-    public void setAttendence(String meetingId, String attendeeId) {
-
-        Meeting meeting = findMeeting(meetingId);
-        meeting.updateAttendence(attendeeId, MeetingStatus.confirmed);
-    }
-
     public void setAttendence(String meetingId, String attendeeId, Position position) {
 
         Meeting meeting = findMeeting(meetingId);

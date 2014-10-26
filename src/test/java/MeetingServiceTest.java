@@ -5,13 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import meetings.*;
 import org.junit.Test;
-
-import meetings.Attendee;
-import meetings.Meeting;
-import meetings.MeetingList;
-import meetings.MeetingStatus;
-import meetings.MeetingsService;
 
 public class MeetingServiceTest {
 
@@ -63,10 +58,12 @@ public class MeetingServiceTest {
 
         assertTrue(service.getMeeting("1").status.equals(MeetingStatus.pending));
 
-        service.setAttendence("1", "wilma");
+        Position position = new Position();
+
+        service.setAttendence("1", "wilma", position);
         assertTrue(service.getMeeting("1").status.equals(MeetingStatus.pending));
 
-        service.setAttendence("1", "velma");
+        service.setAttendence("1", "velma", position);
         assertTrue(service.getMeeting("1").status.equals(MeetingStatus.confirmed));
     }
 }
