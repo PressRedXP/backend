@@ -19,7 +19,8 @@ public class SetAttendanceExtractorTest {
 
     @Test
     public void testParsingOfAttendance() {
-        Position position = Controller.getPositionFrom(putBodyWithConfirmedStatus);
+        RequestExtractor requestExtractor = new RequestExtractor();
+        Position position = requestExtractor.getPositionFrom(putBodyWithConfirmedStatus);
 
         assertTrue(position.longitude == 1);
         assertTrue(position.latitude == 1802321);

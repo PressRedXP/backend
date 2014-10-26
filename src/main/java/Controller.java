@@ -2,16 +2,14 @@ import static spark.Spark.*;
 
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import contacts.ContactsService;
 import meetings.Attendee;
 import meetings.MeetingsService;
 import meetings.Position;
-import meetings.AttendanceData;
 
 public class Controller {
     private static RequestExtractor requestExtractor = new RequestExtractor();
+
 
     public static void main(String[] args) {
         setPort(Integer.parseInt(System.getenv("PORT")));
@@ -33,7 +31,7 @@ public class Controller {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(201);
             List<String> idsOfPeople = requestExtractor.getIdsOfPeopleFrom(request.body());
-            Attendee organiser = getOrganiserFrom(request.body());
+            Attendee organiser = requestExtractor.getOrganiserFrom(request.body());
             return MeetingsService.getInstance().makeMeeting(organiser, idsOfPeople);
         }, new JsonTransformer());
 
@@ -61,29 +59,9 @@ public class Controller {
         put("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
-            Position position = getPositionFrom(request.body());
+            Position position = requestExtractor.getPositionFrom(request.body());
             MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"), position);
             return "";
         });
-    }
-
-
-//    public static List<String> getIdsOfPeopleFrom(String body) {
-//        Gson gson = new Gson();
-//        MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
-//        List<String> ids = meetingCreation.getPeopleIds();
-//        return ids;
-//    }
-
-    public static Attendee getOrganiserFrom(String body) {
-        Gson gson = new Gson();
-        MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
-        return meetingCreation.getOrganiser();
-    }
-
-    public static Position getPositionFrom(String body) {
-        Gson gson = new Gson();
-        AttendanceData attendanceData = gson.fromJson(body, AttendanceData.class);
-        return attendanceData.position;
     }
 }
