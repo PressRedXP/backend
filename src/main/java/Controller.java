@@ -52,13 +52,13 @@ public class Controller {
         // OPTIONS
         options("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
-            response.header("Access-Control-Allow-Methods", "POST, OPTIONS");
+            response.header("Access-Control-Allow-Methods", "PUT, OPTIONS");
             response.status(200);
             return "";
         });
 
-        // POST
-        post("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
+        // PUT
+        put("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
             Position position = getPositionFrom(request.body());
@@ -68,12 +68,12 @@ public class Controller {
     }
 
 
-    public static List<String> getIdsOfPeopleFrom(String body) {
-        Gson gson = new Gson();
-        MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
-        List<String> ids = meetingCreation.getPeopleIds();
-        return ids;
-    }
+//    public static List<String> getIdsOfPeopleFrom(String body) {
+//        Gson gson = new Gson();
+//        MeetingCreation meetingCreation = gson.fromJson(body, MeetingCreation.class);
+//        List<String> ids = meetingCreation.getPeopleIds();
+//        return ids;
+//    }
 
     public static Attendee getOrganiserFrom(String body) {
         Gson gson = new Gson();

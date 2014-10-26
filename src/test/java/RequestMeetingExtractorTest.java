@@ -33,7 +33,8 @@ public class RequestMeetingExtractorTest {
 
     @Test
     public void testParsingOfInvitees() {
-        List<String> idsOfPeople = Controller.getIdsOfPeopleFrom(testBodyWith3Invitees);
+        RequestExtractor requestExtractor = new RequestExtractor();
+        List<String> idsOfPeople = requestExtractor.getIdsOfPeopleFrom(testBodyWith3Invitees);
 
         assertTrue(idsOfPeople.size() == 3);
     }
