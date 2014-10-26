@@ -33,10 +33,7 @@ public class Meeting {
     public MeetingStatus status;
     public Position position;
 
-//    public Attendee organiser;
-    public List<Attendee> people = new ArrayList<Attendee>();
-
-//    public Contacts contacts;
+    public List<Attendee> people = new ArrayList<>();
 
     public Meeting(int index, List<String> ids, Attendee organiser) {
         this.href = String.format("https://justmeet-backend.herokuapp.com/meetings/%d", index);
@@ -50,11 +47,11 @@ public class Meeting {
         people.add(organiser);
     }
 
-    public void updateAttendence(String attendeeId, MeetingStatus newStatus, Position position) {
+    public void updateAttendence(String attendeeId, MeetingStatus newStatus, Position attendeePosition) {
         for (Attendee attendee : people) {
             if (attendee.id.equals(attendeeId)) {
                 attendee.status = newStatus;
-                attendee.position = Optional.of(position);
+                attendee.position = Optional.of(attendeePosition);
             }
         }
 
@@ -62,5 +59,20 @@ public class Meeting {
         people.stream()
                 .filter(attendee -> attendee.status.equals(MeetingStatus.pending))
                 .forEach(attendee -> status = MeetingStatus.pending);
+
+        if (status.equals(MeetingStatus.confirmed)) {
+            setMeetingPositionToCentreOfAttendeesPosition();
+        }
+    }
+
+    private void setMeetingPositionToCentreOfAttendeesPosition() {
+        double sumLat = 0;
+        double sumLong = 0;
+        for (Attendee attendee: people) {
+            sumLat += attendee.position.get().latitude;
+            sumLong += attendee.position.get().longitude;
+        }
+
+        this.position = new Position(sumLat / people.size(), sumLong / people.size());
     }
 }

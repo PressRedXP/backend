@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -5,8 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import meetings.*;
 import org.junit.Test;
+
+import meetings.Attendee;
+import meetings.Meeting;
+import meetings.MeetingList;
+import meetings.MeetingStatus;
+import meetings.MeetingsService;
+import meetings.Position;
 
 public class MeetingServiceTest {
 
@@ -53,17 +60,19 @@ public class MeetingServiceTest {
     public void givenMeetingWithTwoInvitees_whenBothInviteesAccept_thenMeetingIsConfirmed() {
         MeetingsService service = MeetingsService.getInstance();
 
-        Attendee organiser = new Attendee("fred", MeetingStatus.confirmed);
+        Attendee organiser = new Attendee("fred", new Position(0, 0), MeetingStatus.confirmed);
         service.makeMeeting(organiser, Arrays.asList("wilma", "velma"));
 
         assertTrue(service.getMeeting("1").status.equals(MeetingStatus.pending));
 
-        Position position = new Position();
-
-        service.setAttendence("1", "wilma", position);
+        service.setAttendence("1", "wilma", new Position(0, 150));
         assertTrue(service.getMeeting("1").status.equals(MeetingStatus.pending));
 
-        service.setAttendence("1", "velma", position);
+        service.setAttendence("1", "velma", new Position(150, 150));
         assertTrue(service.getMeeting("1").status.equals(MeetingStatus.confirmed));
+
+        assertNotNull(service.getMeeting("1").position);
+        assertEquals(service.getMeeting("1").position.latitude, 50, 0.1);
+        assertEquals(service.getMeeting("1").position.longitude, 100, 0.1);
     }
 }
