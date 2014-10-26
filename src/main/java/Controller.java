@@ -35,8 +35,8 @@ public class Controller {
             return MeetingsService.getInstance().makeMeeting(organiser, idsOfPeople);
         }, new JsonTransformer());
 
-        // POST to clear meetings
-        post("/clearmeetings", (request, response) -> {
+        // delete to clear meetings
+        delete("/clearmeetings", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
             MeetingsService.getInstance().clearMeetings();

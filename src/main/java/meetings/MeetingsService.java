@@ -65,9 +65,6 @@ public class MeetingsService {
     }
 
     public void clearMeetings() {
-        for (Meeting meeting: meetings) {
-            meetings.remove(meeting);
-        }
-
+        meetings = new ArrayList<>();
     }
 }
