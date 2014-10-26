@@ -53,4 +53,17 @@ public class Meeting {
         status = MeetingStatus.confirmed;
         position = new Position();
     }
+
+    public void updateAttendence(String attendeeId, MeetingStatus newStatus) {
+        for (Attendee attendee : people) {
+            if (attendee.id.equals(attendeeId)) {
+                attendee.status = newStatus;
+            }
+        }
+
+        status = MeetingStatus.confirmed;
+        people.stream()
+              .filter(attendee -> attendee.status.equals(MeetingStatus.pending))
+              .forEach(attendee -> status = MeetingStatus.pending);
+    }
 }

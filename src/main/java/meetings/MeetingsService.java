@@ -23,14 +23,8 @@ public class MeetingsService {
         return meeting;
     }
 
-    public Meeting getMeeting(String meetingId) {
-        int index = Integer.parseInt(meetingId);
-        if (index <= meetings.size()) {
-            Meeting meeting = meetings.get(index - 1);
-            return meeting;
-        }
-
-        throw new IndexOutOfBoundsException();
+    public Meeting getMeeting(String meetingIdAsString) {
+        return findMeeting(meetingIdAsString);
     }
 
     public MeetingList getMeetingsForAttendee(String attendeeId) {
@@ -46,9 +40,8 @@ public class MeetingsService {
     }
 
     private boolean doesMeetingContainAttendee(Meeting meeting, String attendeeId) {
-        for(Attendee attendee : meeting.people){
-            if(attendee.id.equals(attendeeId))
-            {
+        for (Attendee attendee : meeting.people) {
+            if (attendee.id.equals(attendeeId)) {
                 return true;
             }
         }
@@ -56,6 +49,17 @@ public class MeetingsService {
     }
 
     public void setAttendence(String meetingId, String attendeeId) {
-        
+        Meeting meeting = findMeeting(meetingId);
+        meeting.updateAttendence(attendeeId, MeetingStatus.confirmed);
+    }
+
+
+    private Meeting findMeeting(String meetingIdAsString) {
+        Integer index = Integer.parseInt(meetingIdAsString) - 1;
+        if (index < meetings.size() && index >= 0) {
+            return meetings.get(index);
+        }
+
+        throw new IndexOutOfBoundsException();
     }
 }

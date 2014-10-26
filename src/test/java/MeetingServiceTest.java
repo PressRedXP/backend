@@ -53,4 +53,20 @@ public class MeetingServiceTest {
 
         assertTrue(meetingList.meetings.size() == 1);
     }
+
+    @Test
+    public void givenMeetingWithTwoInvitees_whenBothInviteesAccept_thenMeetingIsConfirmed() {
+        MeetingsService service = MeetingsService.getInstance();
+
+        Attendee organiser = new Attendee("fred", MeetingStatus.confirmed);
+        service.makeMeeting(organiser, Arrays.asList("wilma", "velma"));
+
+        assertTrue(service.getMeeting("1").status.equals(MeetingStatus.pending));
+
+        service.setAttendence("1", "wilma");
+        assertTrue(service.getMeeting("1").status.equals(MeetingStatus.pending));
+
+        service.setAttendence("1", "velma");
+        assertTrue(service.getMeeting("1").status.equals(MeetingStatus.confirmed));
+    }
 }
