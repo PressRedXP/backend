@@ -36,6 +36,7 @@ public class Meeting {
     public MeetingStatus status;
     public Position position;
     public String pubname;
+    public String vicinity;
 
     public List<Attendee> people = new ArrayList<>();
 
@@ -90,6 +91,7 @@ public class Meeting {
         if (place != null) {
             this.position = new Position(place.latitude, place.longitude);
             this.pubname = place.name;
+            this.vicinity = place.vicinity;
         } else {
             this.pubname = "Not found";
         }
