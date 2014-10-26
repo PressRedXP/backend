@@ -46,6 +46,12 @@ public class Controller {
              response.header("Access-Control-Allow-Origin", "*");
              return MeetingsService.getInstance().getMeetingsForAttendee(request.params(":id"));
         }, new JsonTransformer());
+
+        // PUT
+        put("/meetings/:meetingId/people/:id/attendence", (request, response) -> {
+            MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"));
+            return null;
+        });
     }
 
 

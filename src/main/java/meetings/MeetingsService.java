@@ -54,4 +54,8 @@ public class MeetingsService {
         }
         return false;
     }
+
+    public void setAttendence(String meetingId, String attendeeId) {
+        
+    }
 }
