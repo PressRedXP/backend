@@ -48,6 +48,14 @@ public class Controller {
         }, new JsonTransformer());
 
         // PUT
+        options("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.status(200);
+            response.header("Allow", "PUT");
+            return "";
+        });
+
+        // PUT
         put("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
@@ -56,6 +64,8 @@ public class Controller {
             return "";
         });
     }
+
+
 
 
     public static List<String> getIdsOfPeopleFrom(String body) {
