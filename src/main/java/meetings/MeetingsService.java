@@ -34,6 +34,18 @@ public class MeetingsService {
     }
 
     public MeetingList getMeetingsForAttendee(String attendeeId) {
-        return new MeetingList(meetings);
+        List<Meeting> filteredMeetings = new ArrayList<>();
+
+        meetings.stream()
+                .filter(meeting -> doesMeetingContainAttendee(meeting, attendeeId))
+                .forEach(p -> filteredMeetings.add(p));
+
+        MeetingList meetingList = new MeetingList(filteredMeetings);
+
+        return meetingList;
+    }
+
+    private boolean doesMeetingContainAttendee(Meeting meeting, String attendeeId) {
+        return true;
     }
 }
