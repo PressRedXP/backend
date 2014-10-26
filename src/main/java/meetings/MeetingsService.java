@@ -49,6 +49,7 @@ public class MeetingsService {
     }
 
     public void setAttendence(String meetingId, String attendeeId) {
+
         Meeting meeting = findMeeting(meetingId);
         meeting.updateAttendence(attendeeId, MeetingStatus.confirmed);
     }
