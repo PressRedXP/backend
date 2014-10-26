@@ -46,7 +46,7 @@ public class RequestMeetingExtractorTest {
         assertTrue(organiser.status.equals(MeetingStatus.confirmed));
 
         assertTrue(organiser.position.isPresent());
-        assertTrue(organiser.position.get().latitude == 1.0);
-        assertTrue(organiser.position.get().longitude == 1.0);
+        assertTrue(organiser.position.get().latitude == 1.23);
+        assertTrue(organiser.position.get().longitude == 2.34);
     }
 }

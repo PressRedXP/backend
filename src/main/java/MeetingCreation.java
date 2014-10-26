@@ -7,6 +7,7 @@ import meetings.Position;
 
 public class MeetingCreation {
     public MeetingOrganiser organiser;
+
     public List<People> people;
 
     public List<String> getPeopleIds() {
@@ -14,11 +15,12 @@ public class MeetingCreation {
     }
 
     public Attendee getOrganiser() {
-        return new Attendee(organiser.id, new Position(1, 1), MeetingStatus.confirmed);
+        return new Attendee(organiser.id, organiser.position, MeetingStatus.confirmed);
     }
 
     private class MeetingOrganiser {
         public String id;
+        public Position position;
     }
 
     private class People {
