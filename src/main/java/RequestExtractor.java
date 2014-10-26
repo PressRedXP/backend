@@ -26,4 +26,5 @@ public class RequestExtractor {
         AttendanceData attendanceData = gson.fromJson(body, AttendanceData.class);
         return attendanceData.position;
     }
+
 }

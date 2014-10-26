@@ -12,6 +12,7 @@ public class ContactsService {
         people.add(new Person("Will Crossland", "will"));
         people.add(new Person("Krishnan Sambasivan", "krishnan"));
         people.add(new Person("Roberto Nerici", "roberto"));
+        people.add(new Person("Andrew Markham-Davies", "andrew"));
     }
     public Contacts getContacts() {
         return new Contacts(people);

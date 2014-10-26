@@ -63,4 +63,8 @@ public class MeetingsService {
 
         throw new IndexOutOfBoundsException();
     }
+
+    public void clearMeetings() {
+        meetings = new ArrayList<>();
+    }
 }

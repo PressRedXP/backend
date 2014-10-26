@@ -2,6 +2,7 @@ import static spark.Spark.*;
 
 import java.util.List;
 
+import Dao.PubFinderDao;
 import contacts.ContactsService;
 import meetings.Attendee;
 import meetings.MeetingsService;
@@ -35,6 +36,14 @@ public class Controller {
             return MeetingsService.getInstance().makeMeeting(organiser, idsOfPeople);
         }, new JsonTransformer());
 
+        // delete to clear meetings
+        delete("/meetings", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.status(200);
+            MeetingsService.getInstance().clearMeetings();
+            return "";
+        });
+
         // GET meeting information
         get("/meetings/:meetingId", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
@@ -63,5 +72,13 @@ public class Controller {
             MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"), position);
             return "";
         });
+
+        // GET test
+        get("/pubfinder-test", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.status(200);
+            PubFinderDao pubFinderDao = new PubFinderDao();
+            return pubFinderDao.getPlace(1,1);
+        }, new JsonTransformer());
     }
 }
