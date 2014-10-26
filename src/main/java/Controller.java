@@ -71,5 +71,12 @@ public class Controller {
             MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"), position);
             return "";
         });
+
+        // GET test
+        get("/pubfinder-test", (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.status(200);
+            return "hello";
+        }, new JsonTransformer());
     }
 }
