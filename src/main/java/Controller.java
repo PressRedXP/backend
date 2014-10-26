@@ -57,16 +57,7 @@ public class Controller {
         //});
 
         // PUT
-        options("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
-            response.header("Access-Control-Allow-Origin", "*");
-            response.status(200);
-            Position position = getPositionFrom(request.body());
-            MeetingsService.getInstance().setAttendence(request.params(":meetingId"), request.params(":id"), position);
-            return "";
-        });
-
-        // PUT
-        put("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
+        post("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
             Position position = getPositionFrom(request.body());
