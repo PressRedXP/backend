@@ -48,6 +48,7 @@ public class Controller {
              return MeetingsService.getInstance().getMeetingsForAttendee(request.params(":id"));
         }, new JsonTransformer());
 
+<<<<<<< HEAD
         // OPTIONS
         options("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
@@ -55,9 +56,18 @@ public class Controller {
             response.header("Allow", "PUT");
             return "";
         });
+=======
+        // PUT
+        //options("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
+        //    response.header("Access-Control-Allow-Origin", "*");
+        //    response.status(200);
+        //    response.header("Allow", "PUT");
+        //    return "";
+        //});
+>>>>>>> 7c3d6c6ea774eb3c740a62607e7b16ab54bdfc8a
 
         // PUT
-        put("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
+        post("/meetings/:meetingId/people/:id/attendance", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
             Position position = getPositionFrom(request.body());
