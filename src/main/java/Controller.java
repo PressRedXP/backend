@@ -40,7 +40,6 @@ public class Controller {
             return MeetingsService.getInstance().getMeeting(request.params(":meetingId"));
         }, new JsonTransformer());
 
-
          // GET meetings you are in
          get("/people/:id/meetings", (request, response) -> {
              response.header("Access-Control-Allow-Origin", "*");
