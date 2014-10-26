@@ -36,7 +36,7 @@ public class Controller {
         }, new JsonTransformer());
 
         // delete to clear meetings
-        delete("/clearmeetings", (request, response) -> {
+        delete("/meetings", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
             MeetingsService.getInstance().clearMeetings();
