@@ -24,11 +24,11 @@ package meetings;
 }
  */
 
-import Dao.Place;
-import Dao.PubFinderDao;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import Dao.Place;
+import Dao.PubFinderDao;
 
 public class Meeting {
     public String href;
@@ -85,6 +85,8 @@ public class Meeting {
 
     private void setMeetingPositionToBestPub() {
         PubFinderDao pubFinderDao = new PubFinderDao();
+        System.out.println("Calling pubfinder with " + position.latitude + ", " + position.longitude);
+
         Place place = pubFinderDao.getPlace(this.position.latitude,this.position.longitude);
         if (place != null) {
             this.position = new Position(place.latitude, place.longitude);

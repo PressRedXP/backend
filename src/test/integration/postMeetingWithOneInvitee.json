@@ -1,0 +1,15 @@
+{
+    "organiser":
+        {
+            "id": "roberto",
+            "position": {
+                "latitude": "53.373297",
+                "longitude": "-2.567020"
+            }
+        },
+    "people": [
+        {
+            "id": "alex"
+        }
+    ]
+}
