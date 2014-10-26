@@ -46,6 +46,12 @@ public class MeetingsService {
     }
 
     private boolean doesMeetingContainAttendee(Meeting meeting, String attendeeId) {
-        return true;
+        for(Attendee attendee : meeting.people){
+            if(attendee.id.equals(attendeeId))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
