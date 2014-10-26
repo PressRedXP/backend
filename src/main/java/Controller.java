@@ -2,6 +2,7 @@ import static spark.Spark.*;
 
 import java.util.List;
 
+import Dao.PubFinderDao;
 import contacts.ContactsService;
 import meetings.Attendee;
 import meetings.MeetingsService;
@@ -76,7 +77,8 @@ public class Controller {
         get("/pubfinder-test", (request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
             response.status(200);
-            return "hello";
+            PubFinderDao pubFinderDao = new PubFinderDao();
+            return pubFinderDao.getPlace(1,1);
         }, new JsonTransformer());
     }
 }

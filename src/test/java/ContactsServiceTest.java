@@ -10,21 +10,21 @@ import contacts.Person;
 public class ContactsServiceTest {
 
     @Test
-    public void testThatServiceReturnsFourContacts() {
+    public void testThatServiceReturnsFiveContacts() {
         ContactsService service = new ContactsService();
 
         Contacts contacts = service.getContacts();
 
-        assertTrue(contacts.people.size() == 4);
+        assertTrue(contacts.people.size() == 5);
     }
 
     @Test
-    public void givenFourContacts_whenRequestContacts_thenReturnsOtherThreeContacts() {
+    public void givenFiveContacts_whenRequestContacts_thenReturnsOtherFourContacts() {
         ContactsService service = new ContactsService();
 
         Contacts contacts = service.getContactsFor("alex");
 
-        assertTrue(contacts.people.size() == 3);
+        assertTrue(contacts.people.size() == 4);
         for (Person person: contacts.people) {
             assertFalse(person.id.equals("alex"));
         }

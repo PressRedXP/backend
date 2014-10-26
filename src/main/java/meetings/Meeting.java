@@ -24,6 +24,9 @@ package meetings;
 }
  */
 
+import Dao.Place;
+import Dao.PubFinderDao;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +35,7 @@ public class Meeting {
     public String href;
     public MeetingStatus status;
     public Position position;
+    public String pubname;
 
     public List<Attendee> people = new ArrayList<>();
 
@@ -62,6 +66,7 @@ public class Meeting {
 
         if (status.equals(MeetingStatus.confirmed)) {
             setMeetingPositionToCentreOfAttendeesPosition();
+            setMeetingPositionToBestPub();
         }
     }
 
@@ -78,4 +83,17 @@ public class Meeting {
 
         this.position = new Position(sumLat / people.size(), sumLong / people.size());
     }
+
+    private void setMeetingPositionToBestPub() {
+        PubFinderDao pubFinderDao = new PubFinderDao();
+        Place place = pubFinderDao.getPlace(this.position.latitude,this.position.longitude);
+        if (place != null) {
+            this.position = new Position(place.latitude, place.longitude);
+            this.pubname = place.name;
+        } else {
+            this.pubname = "Not found";
+        }
+
+}
+
 }
