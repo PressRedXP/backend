@@ -8,6 +8,7 @@ import contacts.ContactsService;
 import meetings.Attendee;
 import meetings.MeetingsService;
 import meetings.Position;
+import meetings.AttendanceData;
 
 public class Controller {
 
@@ -83,7 +84,7 @@ public class Controller {
 
     public static Position getPositionFrom(String body) {
         Gson gson = new Gson();
-        Position position = gson.fromJson(body, Position.class);
-        return position;
+        AttendanceData attendanceData = gson.fromJson(body, AttendanceData.class);
+        return attendanceData.position;
     }
 }
